@@ -1,0 +1,8 @@
+[
+  { "char": "а", "frequency": 8.01, "part": "начало" },
+  { "char": "б", "frequency": 1.59, "part": "начало" },
+  { "char": "в", "frequency": 4.54, "part": "середина" },
+  { "char": "г", "frequency": 1.70, "part": "середина" },
+  { "char": "д", "frequency": 2.98, "part": "конец" },
+  { "char": "е", "frequency": 8.45, "part": "конец" }
+]

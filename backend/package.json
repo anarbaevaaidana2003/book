@@ -1,0 +1,25 @@
+{
+    "name": "book-frequency-backend",
+    "version": "1.0.0",
+    "description": "Backend API for book character frequency analysis",
+    "main": "dist/index.js",
+    "scripts": {
+        "build": "tsc",
+        "start": "node dist/index.js",
+        "dev": "ts-node-dev --respawn --transpile-only src/index.ts",
+        "test": "jest"
+    },
+    "dependencies": {
+        "@prisma/client": "^6.5.0",
+        "cors": "^2.8.5",
+        "express": "^4.18.2",
+        "prisma": "^6.5.0"
+    },
+    "devDependencies": {
+        "@types/cors": "^2.8.13",
+        "@types/express": "^4.17.17",
+        "@types/node": "^20.4.5",
+        "ts-node-dev": "^2.0.0",
+        "typescript": "^5.1.6"
+    }
+}
