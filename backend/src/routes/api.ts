@@ -1,41 +1,67 @@
+import { Request, Response } from 'express';
+import { PrismaClient } from '@prisma/client';
+import { getBooks } from '../controllers/bookController';
+const prisma = new PrismaClient();
 import express from 'express';
-import { getBooks, getBookById } from '../controllers/bookController';
-import { getBookFrequency } from '../controllers/frequencyController';
 
-const router = express.Router();
+const router = express.Router(); // Создаём роутер
+router.get('/books', getBooks);
+// Твоя функция для получения данных частоты
+export const getBookFrequency = async (req: Request, res: Response) => {
+  const bookId = parseInt(req.params.id, 10);
+  
+  const { part } = req.query;
 
-// Book routes
-router.get('/books', getBooks);  // Route to get all books
-router.get('/books/:id', getBookById);  // Route to get a book by its ID
-
-// Frequency routes (supporting the part of text as a query parameter)
-router.get('/books/:id/frequency', async (req, res) => {
-  const { id } = req.params;
-  const { part } = req.query;  // Extract 'part' query parameter
-
-  // Log incoming parameters for debugging
-  console.log('Incoming request:', { id, part });
-
-  // Ensure 'part' is a valid string and is provided
-  if (typeof part !== 'string') {
-    return res.status(400).json({ error: 'Part parameter is required and must be a string' });
+  if (!part || typeof part !== 'string') {
+    return res.status(400).json({ error: 'Parameter "part" is required and must be a string' });
   }
-
-  // Parse the id to ensure it's a valid integer
-  const bookId = parseInt(id, 10);
-  if (isNaN(bookId)) {
-    return res.status(400).json({ error: 'Invalid bookId' });
-  }
-
-  console.log('Parsed bookId:', bookId);
-  console.log('Part parameter:', part);
 
   try {
-    // Call frequency controller with valid parameters
-    await getBookFrequency(req, res);  // The controller already extracts `id` and `part` from req
-  } catch (error) {
-    res.status(500).json({ error: 'Failed to fetch frequency data' });
-  }
-});
+    let data;
 
+    switch (part) {
+      case '1 слог':
+        data = await prisma.oneSyllableWord.findMany({
+          where: { bookId },
+          select: { word: true, frequency: true },
+        });
+        data = data.map(({ word, frequency }) => ({ syllable: word, frequency }));
+        break;
+
+      case 'начало':
+        data = await prisma.syllableFrequencyBegin.findMany({
+          where: { bookId },
+          select: { syllable: true, frequency: true },
+        });
+        break;
+
+      case 'середина':
+        data = await prisma.syllableFrequencyMiddle.findMany({
+          where: { bookId },
+          select: { syllable: true, frequency: true },
+        });
+        break;
+
+      case 'конец':
+        data = await prisma.syllableFrequencyEnd.findMany({
+          where: { bookId },
+          select: { syllable: true, frequency: true },
+        });
+        break;
+
+      default:
+        return res.status(400).json({ error: `Unknown part: ${part}` });
+    }
+
+    res.json(data);
+  } catch (err) {
+    console.error('Error fetching frequency:', err);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+};
+
+// Подключаем маршруты к роутеру
+router.get('/books/:id/frequency', getBookFrequency);
+
+// Экспортируем router
 export default router;

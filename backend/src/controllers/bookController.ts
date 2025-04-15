@@ -1,41 +1,4 @@
-/*import { Request, Response } from 'express';
-import fs from 'fs';
-import path from 'path';
-import { Book } from '../models/Book';
 
-export const getBooks = (req: Request, res: Response): void => {
-  try {
-    const booksPath = path.join(__dirname, '../data/books.json');
-    const booksData = fs.readFileSync(booksPath, 'utf8');
-    const books: Book[] = JSON.parse(booksData);
-    
-    res.status(200).json(books);
-  } catch (error) {
-    console.error('Error fetching books:', error);
-    res.status(500).json({ message: 'Failed to fetch books' });
-  }
-};
-
-export const getBookById = (req: Request, res: Response): void => {
-  try {
-    const bookId = parseInt(req.params.id);
-    const booksPath = path.join(__dirname, '../data/books.json');
-    const booksData = fs.readFileSync(booksPath, 'utf8');
-    const books: Book[] = JSON.parse(booksData);
-    
-    const book = books.find(b => b.id === bookId);
-    
-    if (!book) {
-      res.status(404).json({ message: 'Book not found' });
-      return;
-    }
-    
-    res.status(200).json(book);
-  } catch (error) {
-    console.error('Error fetching book:', error);
-    res.status(500).json({ message: 'Failed to fetch book' });
-  }
-};*/
 import { Request, Response } from 'express';
 import { PrismaClient } from '@prisma/client';  // Import Prisma Client
 

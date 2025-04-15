@@ -1,0 +1,115 @@
+
+
+@use './variables' as *;
+.appContainer {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.appTitle {
+  text-align: center;
+  margin-bottom: 30px;
+  color: #333;
+}
+
+.bookContainer {
+  margin-top: 30px;
+}
+
+.bookItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding-bottom: 20px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #eee;
+}
+
+.bookTitle {
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
+  flex: 1;
+  padding-right: 20px;
+}
+
+.bookButtonContainer {
+  display: flex;
+  gap: 10px;
+}
+
+.bookButton {
+  padding: 8px 16px;
+  background-color: #f0f0f0;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background-color: #e0e0e0;
+  }
+
+ /* &.selected {
+    background-color: #007bff;
+    color: white;
+    border-color: #007bff;
+  }*/
+}
+.bookButton.selected[data-part="1 слог"] {
+  background-color: #007bff; /* синий */
+  color: white;
+}
+.bookButton.selected[data-part="начало"] {
+  background-color: #00bf7b; /* зелёный */
+  color: white;
+}
+.bookButton.selected[data-part="середина"] {
+  background-color: #f6d819; /* жёлтый */
+  color: black;
+}
+.bookButton.selected[data-part="конец"] {
+  background-color: #f54040; /* красный */
+  color: white;
+}
+.noBooks {
+  color: #dc3545;
+  text-align: center;
+  font-size: 16px;
+}
+.chartContainer {
+  margin: 20px 0;
+  padding: 20px;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  background-color: #fff;
+  overflow: visible; /* Разрешаем содержимому выходить за границы */
+}
+
+.chartTitle {
+  margin-bottom: 20px;
+  color: #333;
+  font-size: 1.5rem;
+  text-align: center;
+}
+
+.chartWrapper {
+  min-height: 500px; /* Минимальная высота */
+  width: 100%;
+}
+
+.loading, .error, .info {
+  padding: 20px;
+  text-align: center;
+  font-size: 1.1rem;
+}
+
+.error {
+  color: #dc3545;
+}
+
+.info {
+  color: #6c757d;
+}
