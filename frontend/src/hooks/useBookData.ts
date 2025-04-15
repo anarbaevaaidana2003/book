@@ -4,7 +4,7 @@ import { Book, CharData } from '../types';
 export const useBookData = () => {
   const [books, setBooks] = useState<Book[]>([]);
   const [selectedBook, setSelectedBook] = useState<Book | null>(null);
-  const [selectedPart, setSelectedPart] = useState<string>('начало');
+  const [selectedPart, setSelectedPart] = useState<string>('сөздүн башы');
   const [charData, setCharData] = useState<CharData[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);

@@ -58,19 +58,19 @@
     border-color: #007bff;
   }*/
 }
-.bookButton.selected[data-part="1 слог"] {
+.bookButton.selected[data-part="1 муундан турган сөз"] {
   background-color: #007bff; /* синий */
   color: white;
 }
-.bookButton.selected[data-part="начало"] {
+.bookButton.selected[data-part="сөздүн башы"] {
   background-color: #00bf7b; /* зелёный */
   color: white;
 }
-.bookButton.selected[data-part="середина"] {
+.bookButton.selected[data-part="сөздүн ортосу"] {
   background-color: #f6d819; /* жёлтый */
   color: black;
 }
-.bookButton.selected[data-part="конец"] {
+.bookButton.selected[data-part="сөздүн аягы"] {
   background-color: #f54040; /* красный */
   color: white;
 }

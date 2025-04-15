@@ -13,7 +13,7 @@ import { CharFrequency, Book } from '../types';
 import { fetchCharFrequency } from '../services/api';
 import styles from '../styles/main.module.scss';
 
-type BookPart = '1 слог' | 'начало' | 'середина' | 'конец';
+type BookPart = '1 муундан турган сөз' | 'сөздүн башы' | 'сөздүн ортосу' | 'сөздүн аягы';
 
 interface CharFrequencyChartProps {
   selectedBook: Book | null;
@@ -29,10 +29,10 @@ const CharFrequencyChart: React.FC<CharFrequencyChartProps> = ({
   const [error, setError] = useState('');
 
   const partColors: Record<BookPart, string> = {
-    '1 слог': '#60a5fa',
-    'начало': '#34d399',
-    'середина': '#fbbf24',
-    'конец': '#f87171',
+    '1 муундан турган сөз': '#60a5fa',
+    'сөздүн башы': '#34d399',
+    'сөздүн ортосу': '#fbbf24',
+    'сөздүн аягы': '#f87171',
   };
 
   useEffect(() => {
@@ -78,7 +78,7 @@ const CharFrequencyChart: React.FC<CharFrequencyChartProps> = ({
   return (
     <div className={styles.chartContainer}>
       <h2 className={styles.chartTitle}>
-        Частота слогов в "{selectedBook.title}" ({selectedPart})
+         "{selectedBook.title}" ({selectedPart}) китептеги муундардын жыштыгы
       </h2>
 
       <div className={styles.chartWrapper}>
@@ -93,7 +93,7 @@ const CharFrequencyChart: React.FC<CharFrequencyChartProps> = ({
             <XAxis
               type="number"
               label={{
-                value: 'Частотность',
+                value: 'Жыштык',
                 position: 'insideBottom',
                 offset: -30,
               }}
@@ -108,13 +108,13 @@ const CharFrequencyChart: React.FC<CharFrequencyChartProps> = ({
               interval={0}
             />
             <Tooltip
-              formatter={(value: number) => [`${value.toFixed(2)}`, 'Частота']}
-              labelFormatter={(label) => `Слог: ${label}`}
+              formatter={(value: number) => [`${value.toFixed(2)}`, 'Жыштык']}
+              labelFormatter={(label) => `${label} мууну`}
             />
             <Legend />
             <Bar
               dataKey="frequency"
-              name="Частота"
+              name="Жыштык"
               fill={partColors[selectedPart]}
               animationDuration={1500}
               barSize={20}

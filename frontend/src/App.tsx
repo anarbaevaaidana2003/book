@@ -11,7 +11,7 @@ const App: React.FC = () => {
 
   return (
     <div className={styles.appContainer}>
-      <h1 className={styles.appTitle}>Частотность слогов в книгах</h1>
+      <h1 className={styles.appTitle}>Китептердеги муундардын кездешүү жыштыгы</h1>
       
 
       
@@ -30,7 +30,7 @@ const App: React.FC = () => {
 
         
             <div className={styles.bookButtonContainer}>
-              {['1 слог', 'начало', 'середина', 'конец'].map((part) => (
+              {['1 муундан турган сөз', 'сөздүн башы', 'сөздүн ортосу', 'сөздүн аягы'].map((part) => (
                 <button
                   className={`${styles.bookButton} ${
                     selectedBook?.id === book.id && selectedPart==part? styles.selected : ''
